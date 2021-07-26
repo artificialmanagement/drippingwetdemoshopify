@@ -1,0 +1,69 @@
+{
+  "root": true,
+  "api": {
+    "projectId": "ieasd5lg",
+    "dataset": "production"
+  },
+  "project": {
+    "name": "HULL",
+    "basePath": "/studio"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/color-input",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/dashboard",
+    "@sanity/desk-tool",
+    "dashboard-widget-document-list",
+    "media-library",
+    "vercel-deploy",
+    "note-field"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "@sanity/vision"
+      ]
+    }
+  },
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.js"
+    },
+    {
+      "implements": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/base/new-document-structure",
+      "path": "./docStructure.js"
+    },
+    {
+      "implements": "part:@sanity/dashboard/config",
+      "path": "./dashboardConfig.js"
+    },
+    {
+      "implements": "part:@sanity/base/brand-logo",
+      "path": "./branding/logo.js"
+    },
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "./branding/skin.css"
+    },
+    {
+      "implements": "part:@sanity/base/document-actions/resolver",
+      "path": "./parts/resolve-actions.js"
+    },
+    {
+      "implements": "part:@sanity/base/document-badges/resolver",
+      "path": "./parts/resolve-badges.js"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input-resolver",
+      "path": "./parts/resolve-input.js"
+    }
+  ]
+}

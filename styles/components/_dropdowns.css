@@ -1,0 +1,38 @@
+.dropdown {
+  @apply relative z-10;
+
+  &.is-open {
+    @apply sm:z-30;
+    
+    @screen sm {
+      .dropdown--content {
+        @apply opacity-100 visible pointer-events-auto;
+      }
+    }
+  }
+
+  /* Customize dropdown navigation buttons: */
+  /* (you should mostly offload these to the general header links/button styles) */
+  &--toggle {
+  }
+
+  &--icon {
+  }
+
+  &--content {
+    @apply relative h-0 overflow-y-hidden;
+    @apply sm:absolute sm:top-full sm:whitespace-nowrap sm:overflow-y-visible sm:opacity-0 sm:invisible sm:pointer-events-none sm:transition-all;
+
+    @screen sm {
+      height: auto !important; /* override mobile accordion styles */
+    }
+  }
+
+  &--nav {
+    @apply block relative;
+
+    a {
+      color: hsla(var(--pageText-hsl), 0.3);
+    }
+  }
+}

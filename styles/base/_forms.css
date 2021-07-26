@@ -1,0 +1,182 @@
+.form {
+  @apply relative;
+  
+  &--error {
+    /* Error Message styles */
+    @apply bg-pageBG border p-4 md:p-4 text-center;
+
+    &-reset {
+      @apply mt-2;
+    }
+  }
+  
+  &--success {
+    /* Success Message styles */
+    @apply bg-pageBG border p-4 md:p-4 text-center;
+  }
+}
+
+.control {
+  @apply flex flex-col relative text-left bg-pageBG;
+
+  &--group {
+    @apply grid gap-y-2 grid-cols-1 sm:grid-cols-2;
+
+    &.is-inline {
+      @apply sm:flex;
+
+      .control {
+        @apply sm:flex-1 m-0 border rounded-full bg-pageBG;
+      }
+
+      .btn {
+        @apply sm:ml-4 sm:w-auto;
+      }
+    }
+
+    &.is-clean {
+      @apply sm:border-b mb-4;
+
+      .control {
+        @apply sm:border-0;
+        
+        &--label,
+        input {
+          @apply sm:px-0;
+        }
+
+        &--error {
+          @apply sm:left-0 sm:transform-none;
+        }
+      }
+
+      .btn {
+        @apply sm:px-0 sm:border-0 sm:bg-transparent sm:text-pageText;
+
+        &.is-disabled {
+          @apply opacity-60;
+        }
+      }
+    }
+  }
+
+  &--label {
+    @apply absolute top-1/2 transform -translate-y-1/2 left-0 px-4 py-2;
+
+    .is-filled & {
+      @apply hidden;
+    }
+
+    &.for-textarea {
+      @apply top-0 transform-none;
+    }
+
+    &.for-checkbox {
+      @apply transform-none inline-flex relative top-auto left-auto mx-auto sm:mx-0 p-0 cursor-pointer;
+
+      svg {
+        @apply block flex-none mr-4 p-1 pointer-events-none border border-current transition-colors;
+        width: 20px;
+        height: 20px;
+        transition-delay: .15s;
+
+        input:checked + & {
+          @apply bg-pageText;
+          transition-delay: 0s;
+        }
+
+        path {
+          @apply stroke-current text-pageBG transition-all;
+          stroke-dashoffset: 120px;
+          stroke-dasharray: 120px;
+          transition-delay: 0s;
+
+          input:checked + & {
+            stroke-dashoffset: 0;
+            transition-delay: .15s;
+          }
+        }
+      }
+
+      .rc {
+        @apply flex flex-col justify-center m-0 select-none;
+
+        p {
+          @apply text-xs;
+        }
+      }
+    }
+  }
+
+  &--error {
+    @apply absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-1/2 px-2 rounded-full bg-pageText text-pageBG text-xs leading-normal font-semibold;
+  }
+
+  &--pot {
+    @apply hidden;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  textarea {
+    @apply relative appearance-none w-full h-full px-4 py-2 rounded-none border font-inherit text-base leading-none bg-transparent text-pageText;
+
+    .is-inline & {
+      @apply border-0;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      @apply bg-transparent text-pageText;
+      -webkit-text-fill-color: var(--pageText);
+      -webkit-box-shadow: 0 0 0 100em var(--pageBG) inset;
+    }
+  }
+
+  input[type="checkbox"] {
+    @apply sr-only;
+
+    &:focus {
+      + label {
+        outline: 1px dashed var(--pageText);
+        outline-offset: 2px;
+
+        .is-inverted & {
+          outline-color: var(--pageBG);
+        }
+        
+        body:not(.is-tabbing) & {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  textarea {
+    @apply max-w-full;
+    min-height: 5rem;
+  }
+
+  &.has-error {
+    input,
+    textarea {
+      /* Form Control Error styles */
+    }
+  }
+}
+
+::-webkit-input-placeholder {
+  @apply text-pageText;
+}
+::-moz-placeholder {
+  @apply text-pageText;
+}
+:-ms-input-placeholder {
+  @apply text-pageText;
+}
+:-moz-placeholder {
+  @apply text-pageText;
+}

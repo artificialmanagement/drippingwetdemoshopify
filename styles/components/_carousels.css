@@ -1,0 +1,130 @@
+.carousel {
+  @apply relative w-full bg-black;
+
+  &--slides {
+    @apply flex relative overflow-hidden;
+    touch-action: pan-y;
+    will-change: transform;
+
+    .has-drag & {
+      cursor: move;
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
+  }
+
+  &--slide {
+    @apply relative flex-grow-0 flex-shrink-0 w-full min-h-full overflow-hidden;
+  }
+
+  &--thumbs {
+    @apply flex flex-col absolute top-0 w-20 m-3;
+
+    button {
+      @apply m-1;
+
+      &.is-active {
+        /* active state styles */
+      }
+    }
+  }
+
+  &--hud {
+    @apply flex justify-center absolute bottom-0 inset-x-0 transform translate-y-1/2 pointer-events-none;
+  }
+
+  &--nav {
+    @apply flex flex-row items-center relative rounded-full bg-pageBG border p-1 pointer-events-auto;
+  }
+
+  &--prev,
+  &--next {
+    @apply clean-btn w-8 h-8 p-2 rounded-full bg-transparent transition-colors duration-300;
+
+    &:hover {
+      background: hsla(var(--pageText-hsl), .2);
+    }
+
+    svg {
+      @apply block;
+    }
+  }
+
+  &--prev {
+    transform: scaleX(-1);
+  }
+
+  &--status {
+    @apply flex items-center justify-center relative h-8 mx-2;
+  }
+
+  &--counter {
+    @apply relative grid grid-cols-2 gap-px h-8 rounded-full bg-pageText text-pageBG;
+
+    .carousel--dots + & {
+      @apply ml-2 mr-1;
+    }
+
+    &::after {
+      @apply absolute left-1/2 transform -translate-x-1/2 inset-y-3 w-px bg-pageBG opacity-30;
+      content: "";
+    }
+  }
+
+  &--counter-item {
+    @apply relative flex flex-col overflow-hidden p-2 text-xs font-semibold;
+
+    &.is-current {
+      @apply pl-3;
+    }
+
+    &.is-total {
+      @apply pr-3;
+    }
+
+    .counter-flipper {
+      @apply relative overflow-hidden;
+      
+      span {
+        @apply block;
+        font-feature-settings: "tnum";
+        will-change: transform;
+    
+        + span {
+          @apply absolute inset-x-0 top-0;
+        }
+      }
+    }
+  }
+
+  &--dots {
+    @apply relative flex items-center h-8;
+    
+    button {
+      @apply clean-btn p-1 bg-transparent;
+
+      &::before {
+        @apply block relative w-2 h-2 bg-pageText rounded-full opacity-30;
+        transition: opacity .1s linear, transform .4s cubic-bezier(0.22, 1, 0.36, 1);
+        content: "";
+      }
+
+      &:hover {
+        &::before {
+          @apply opacity-100;
+        }
+      }
+
+      &.is-active {
+        /* active state styles */
+        &::before {
+          @apply opacity-100;
+          transform: scale(1.5);
+        }
+      }
+    }
+  }
+}

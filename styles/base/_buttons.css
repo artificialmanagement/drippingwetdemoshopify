@@ -1,0 +1,15 @@
+.btn {
+  @apply clean-btn;
+
+  &.is-block {
+    @apply block w-full;
+  }
+
+  &.is-loading {
+    @apply cursor-wait !important;
+  }
+
+  &.is-disabled {
+    @apply cursor-default pointer-events-none;
+  }
+}
